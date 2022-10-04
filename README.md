@@ -149,3 +149,14 @@ stanza: main
 ``sudo -u postgres pgbackrest --stanza=main --type=diff --log-level-console=info backup`` - for differencial backup
 
 Backups schedule
+
+``su -``
+
+``nano /etc/crontab``
+
+```
+# PgBackRest: Full backup every month:
+0 0 1 * * postgres pgbackrest --stanza=main --type=full --log-level-console=info backup
+# PgBackRest: Differencial backup every day:
+0 1 * * * postgres pgbackrest --stanza=main --type=diff --log-level-console=info backup
+```

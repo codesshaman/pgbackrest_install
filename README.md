@@ -120,3 +120,25 @@ Answer:
 2022-10-04 12:38:11.343 P00   INFO: expire command begin 2.41: --exec-id=2907765-be55cb9b --log-level-console=info --log-path=/postgresbackups/logs --repo1-path=/postgresbackups --repo1-retention-diff=3 --repo1-retention-full=2 --stanza=main
 2022-10-04 12:38:11.350 P00   INFO: expire command end: completed successfully (7ms)
 ```
+
+Checking of finished backups:
+
+``sudo -u postgres pgbackrest info``
+
+Answer:
+
+```
+stanza: main
+    status: ok
+    cipher: none
+
+    db (current)
+        wal archive min/max (14): 00000001000000000000000B/000000010000000000000010
+
+        full backup: 20221004-123802F
+            timestamp start/stop: 2022-10-04 12:38:02 / 2022-10-04 12:38:11
+            wal start/stop: 000000010000000000000010 / 000000010000000000000010
+            database size: 92.8MB, database backup size: 92.8MB
+            repo1: backup set size: 11.5MB, backup size: 11.5MB
+```
+

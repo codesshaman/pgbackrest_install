@@ -79,7 +79,7 @@ Step 2. Check stanza:
 Answer:
 
 ```
-2022-10-04 12:31:18.239 P00   INFO: check command begin 2.41: --exec-id=2907186-ee921fba --log-level-console=info --log-path=/pgbckps/logs --pg1-path=/var/lib/postgresql/14/main --repo1-path=/pgbckps --stanza=main
+2022-10-04 12:31:18.239 P00   INFO: check command begin 2.41: --exec-id=2907186-ee921fba --log-level-console=info --log-path=/postgresbackups/logs --pg1-path=/var/lib/postgresql/14/main --repo1-path=/postgresbackups --stanza=main
 2022-10-04 12:31:18.849 P00   INFO: check repo1 configuration (primary)
 2022-10-04 12:31:19.052 P00   INFO: check repo1 archive for WAL (primary)
 2022-10-04 12:31:19.255 P00   INFO: WAL segment 00000001000000000000000E successfully archived to '/pgbckps/archive/main/14-1/0000000100000000/00000001000000000000000E-8bfa3ff412942ffddb0a158bf2fea08b2a01befc.gz' on repo1
@@ -100,3 +100,23 @@ sudo tree -d /postgresbackups
 └── logs
 ```
 
+Step 3: Full backup
+
+``sudo -u postgres pgbackrest --stanza=main --type=full --log-level-console=info backup``
+
+Answer:
+
+```
+2022-10-04 12:38:01.931 P00   INFO: backup command begin 2.41: --exec-id=2907765-be55cb9b --log-level-console=info --log-path=/postgresbackups/logs --pg1-path=/var/lib/postgresql/14/main --process-max=2 --repo1-path=/postgresbackups --repo1-retention-diff=3 --repo1-retention-full=2 --stanza=main --start-fast --stop-auto --type=full
+2022-10-04 12:38:02.643 P00   INFO: execute non-exclusive pg_start_backup(): backup begins after the requested immediate checkpoint completes
+2022-10-04 12:38:03.245 P00   INFO: backup start archive = 000000010000000000000010, lsn = 0/10000060
+2022-10-04 12:38:03.245 P00   INFO: check archive for prior segment 00000001000000000000000F
+2022-10-04 12:38:10.916 P00   INFO: execute non-exclusive pg_stop_backup() and wait for all WAL segments to archive
+2022-10-04 12:38:11.121 P00   INFO: backup stop archive = 000000010000000000000010, lsn = 0/10000138
+2022-10-04 12:38:11.125 P00   INFO: check archive for segment(s) 000000010000000000000010:000000010000000000000010
+2022-10-04 12:38:11.264 P00   INFO: new backup label = 20221004-123802F
+2022-10-04 12:38:11.343 P00   INFO: full backup size = 92.8MB, file total = 3656
+2022-10-04 12:38:11.343 P00   INFO: backup command end: completed successfully (9414ms)
+2022-10-04 12:38:11.343 P00   INFO: expire command begin 2.41: --exec-id=2907765-be55cb9b --log-level-console=info --log-path=/postgresbackups/logs --repo1-path=/postgresbackups --repo1-retention-diff=3 --repo1-retention-full=2 --stanza=main
+2022-10-04 12:38:11.350 P00   INFO: expire command end: completed successfully (7ms)
+```

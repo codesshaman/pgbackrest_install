@@ -142,6 +142,10 @@ stanza: main
             repo1: backup set size: 11.5MB, backup size: 11.5MB
 ```
 
-###Step 4: Incremental backup:
+###Step 4: Incremental or differencial backup:
 
-``sudo -u postgres pgbackrest --stanza=main --type=incr --log-level-console=info backup``
+``sudo -u postgres pgbackrest --stanza=main --type=incr --log-level-console=info backup`` - for incremantal backup
+
+``sudo -u postgres pgbackrest --stanza=main --type=diff --log-level-console=info backup`` - for differencial backup
+
+

@@ -86,3 +86,17 @@ Answer:
 2022-10-04 12:31:19.255 P00   INFO: check command end: completed successfully (1017ms)
 ```
 
+In the /postgresbackups folder create subfolders for backups:
+
+```
+sudo tree -d /postgresbackups
+/postgresbackups
+├── archive
+│   └── main
+│       └── 14-1
+│           └── 0000000100000000
+├── backup
+│   └── main
+└── logs
+```
+

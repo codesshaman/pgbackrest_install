@@ -148,4 +148,4 @@ stanza: main
 
 ``sudo -u postgres pgbackrest --stanza=main --type=diff --log-level-console=info backup`` - for differencial backup
 
-
+Backups schedule

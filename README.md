@@ -40,9 +40,9 @@ All script code:
 
 ```
 [global]
-repo1-path=/pgbckps
+repo1-path=/postgresbackups
 process-max=2
-log-path=/pgbckps/logs
+log-path=/postgresbackups/logs
 
 [main]
 pg1-path=/var/lib/postgresql/14/main

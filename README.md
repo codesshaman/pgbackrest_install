@@ -4,6 +4,7 @@ Pgbackrest installation and local backups instruction
 + [Install](https://github.com/codesshaman/pgbackrest_install/#Install "Install")
 + [Local backups](https://github.com/codesshaman/pgbackrest_install/#Local "Local backups")
 + [S3 backups](https://github.com/codesshaman/pgbackrest_install/#S3 "S3 backups")
++ [Recovery](https://github.com/codesshaman/pgbackrest_install/#Recovery "Recovery")
 
 
 ### Install
@@ -176,8 +177,10 @@ Backups schedule
 
 ### Step 1: Configure pgbackrest for S3
 
-# Recovery
 
+
+### Recovery
++ [To the top](https://github.com/codesshaman/pgbackrest_install/#Top "Top")</br>
 ### Step 1: Stopping postgres
 
 ``sudo systemctl stop postgresql``

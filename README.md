@@ -177,7 +177,41 @@ Backups schedule
 
 ### Step 1: Configure pgbackrest for S3
 
+Backup config:
 
+``sudo cp /etc/pgbackrest.conf /etc/pgbackrest.conf.bckp``
+
+Create encryption key:
+
+``openssl rand -base64 48``
+
+Edit config:
+
+``/etc/pgbackrest/pgbackrest.conf``
+
+Code:
+
+```
+[main]
+pg1-path=/var/lib/postgresql/14/main
+
+[global]
+log-level-file=detail
+repo1-cipher-pass=tr5+BXdfdoxeyUqfo6AzLTrW+c+Jfd/1QbQj2CDMMBwtB0YGH3EJajry4+Eeen6D
+repo1-cipher-type=aes-256-cbc
+repo1-path=/var/lib/pgbackrest
+repo1-retention-full=2 # Параметр, указывающий сколько хранить полных бэкапов. Т.е. если у вас есть два полных бэкапа и вы создаете третий, то самый старый бэкап будет удален. Можно произносить как "хранить не более двух полных бэкапов" - по аналогии с ротациями логов.
+repo1-type=s3
+repo1-s3-bucket=pgbackrest-part2-tutorial
+repo1-s3-endpoint=s3.us-east-1.amazonaws.com
+repo1-s3-region=us-east-1
+repo1-s3-key=9wdS3G8U5wz7kNsFWVGck7DDZ7DtVDtbM
+repo1-s3-key-secret=A9zRmW16zXKt2vVA8mmNsFWy2mUAPYHa
+start-fast=y
+
+[global:archive-push]
+compress-level=3
+```
 
 ### Recovery
 + [To the top](https://github.com/codesshaman/pgbackrest_install/#Top "Top")</br>

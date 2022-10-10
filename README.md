@@ -69,8 +69,8 @@ Check:
 ``sudo systemctl status postgresql``
 
 ### Local
-
-###Step 1. Create stanza:
++ [To the top](https://github.com/codesshaman/pgbackrest_install/#Top "Top")</br>
+### Step 1. Create stanza:
 
 ``sudo -u postgres pgbackrest --stanza=main --log-level-console=info stanza-create``
 
@@ -82,7 +82,7 @@ Answer:
 2021-07-19 15:08:36.146 P00   INFO: stanza-create command end: completed successfully (629ms)
 ```
 
-###Step 2. Check stanza:
+### Step 2. Check stanza:
 
 ``sudo -u postgres pgbackrest --stanza=main --log-level-console=info check``
 
@@ -110,7 +110,7 @@ sudo tree -d /postgresbackups
 └── logs
 ```
 
-###Step 3: First full backup
+### Step 3: First full backup
 
 ``sudo -u postgres pgbackrest --stanza=main --type=full --log-level-console=info backup``
 
@@ -152,7 +152,7 @@ stanza: main
             repo1: backup set size: 11.5MB, backup size: 11.5MB
 ```
 
-###Step 4: Incremental or differencial backup:
+### Step 4: Incremental or differencial backup:
 
 ``sudo -u postgres pgbackrest --stanza=main --type=incr --log-level-console=info backup`` - for incremantal backup
 
@@ -173,7 +173,7 @@ Backups schedule
 
 # Recovery
 
-###Step 1: Stopping postgres
+### Step 1: Stopping postgres
 
 ``sudo systemctl stop postgresql``
 

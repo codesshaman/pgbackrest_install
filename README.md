@@ -187,7 +187,7 @@ Create encryption key:
 
 Edit config:
 
-``/etc/pgbackrest/pgbackrest.conf``
+``nano /etc/pgbackrest/pgbackrest.conf``
 
 Code:
 

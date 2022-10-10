@@ -176,11 +176,19 @@ Backups schedule
 + [To the top](https://github.com/codesshaman/pgbackrest_install/#Top "Top")</br>
 ### Step 1: Stopping postgres
 
-``sudo systemctl stop postgresql``
+``sudo pg_ctlcluster 14 main stop``
 
-###Step 2: Recovery
+### Step 2: Recovery
 
-`` ``
+```
+sudo -u postgres pgbackrest --stanza=main --log-level-console=info --delta --recovery-option=recovery_target=immediate restore
+```
+
+### Step 3: Start process
+
+``sudo pg_ctlcluster 14 main start``
+
+OR for full recovery only: ``sudo -u postgres pgbackrest --stanza=main --log-level-console=info --delta restore``
 
 Инструкция по восстановлению:
 https://sidmid.ru/pgbackrest-%D1%83%D1%82%D0%B8%D0%BB%D0%B8%D1%82%D0%B0-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D0%BA%D0%B0%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-postgres/

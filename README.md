@@ -3,6 +3,7 @@ Pgbackrest installation and local backups instruction
 ### Top
 + [Install](https://github.com/codesshaman/pgbackrest_install/#Install "Install")
 + [Local backups](https://github.com/codesshaman/pgbackrest_install/#Local "Local backups")
++ [S3 backups](https://github.com/codesshaman/pgbackrest_install/#S3 "S3 backups")
 
 
 ### Install
@@ -170,6 +171,10 @@ Backups schedule
 # PgBackRest: Differencial backup every day:
 0 1 * * * postgres pgbackrest --stanza=main --type=diff --log-level-console=info backup
 ```
+### S3
++ [To the top](https://github.com/codesshaman/pgbackrest_install/#Top "Top")</br>
+
+### Step 1: Configure pgbackrest for S3
 
 # Recovery
 

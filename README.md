@@ -2,6 +2,8 @@
 Pgbackrest installation and local backups instruction
 ### Top
 + [Install](https://github.com/codesshaman/pgbackrest_install/#Install "Install")
++ [Local backups](https://github.com/codesshaman/pgbackrest_install/#Local backups "Local backups")
+
 
 ### Install
 + [To the top](https://github.com/codesshaman/pgbackrest_install/#Top "Top")</br>
@@ -66,7 +68,7 @@ Check:
 
 ``sudo systemctl status postgresql``
 
-# Backups
+### Local backups
 
 ###Step 1. Create stanza:
 

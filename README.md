@@ -1,6 +1,10 @@
 # pgbackrest_install
 Pgbackrest installation and local backups instruction
+### Top
++ [Install](https://github.com/codesshaman/pgbackrest_install/#Install "Install")
 
+### Install
++ [To the top](https://github.com/codesshaman/pgbackrest_install/#Top "Top")
 Install all soft:
 
 ``apt update && apt install build-essential libssl-dev libxml2-dev libperl-dev zlib1g-dev libpq-dev perl pgbackrest``
@@ -59,6 +63,8 @@ Reload postgres demon:
 Check:
 
 ``sudo systemctl status postgresql``
+
+# Backups
 
 ###Step 1. Create stanza:
 
@@ -160,6 +166,16 @@ Backups schedule
 # PgBackRest: Differencial backup every day:
 0 1 * * * postgres pgbackrest --stanza=main --type=diff --log-level-console=info backup
 ```
+
+# Recovery
+
+###Step 1: Stopping postgres
+
+``sudo systemctl stop postgresql``
+
+###Step 2: Recovery
+
+`` ``
 
 Инструкция по восстановлению:
 https://sidmid.ru/pgbackrest-%D1%83%D1%82%D0%B8%D0%BB%D0%B8%D1%82%D0%B0-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D0%BA%D0%B0%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-postgres/

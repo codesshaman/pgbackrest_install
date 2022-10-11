@@ -2,16 +2,17 @@
 Pgbackrest installation and local backups instruction
 ### Top
 + [Install](https://github.com/codesshaman/pgbackrest_install/#Install "Install")
++ [Archive mode](https://github.com/codesshaman/pgbackrest_install/#Archive "Archive mode")
 + [Local backups](https://github.com/codesshaman/pgbackrest_install/#Local "Local backups")
 + [Recovery](https://github.com/codesshaman/pgbackrest_install/#Recovery "Recovery")
 
 
 ### Install
 + [To the top](https://github.com/codesshaman/pgbackrest_install/#Top "Top")</br>
-Install all soft:
+> Install all soft:
 
 ```
-apt update && apt install build-essential libssl-dev libxml2-dev libperl-dev zlib1g-dev libpq-dev perl pgbackrest
+sudo apt update && sudo apt install -y build-essential libssl-dev libxml2-dev libperl-dev zlib1g-dev libpq-dev perl pgbackrest
 ```
 
 Check installation:
@@ -73,11 +74,67 @@ Check:
 
 ``sudo systemctl status postgresql``
 
+### Archive
++ [To the top](https://github.com/codesshaman/pgbackrest_install/#Top "Top")</br>
+> Enable archive mode:
+
+### Step 1. Check mode:
+```
+postgres=# show archive_mode;
+ archive_mode
+--------------
+ off
+(1 row)
+
+postgres=# show archive_command;
+ archive_command
+-----------------
+ (disabled)
+(1 row)
+```
+
+### Step 2. Create archive directory as root user:
+
+``sudo mkdir -p /scratch/postgres/backup/archive``
+
+``sudo chown postgres:postgres -R /scratch/postgres/backup/archive``
+
+### Step 3. Enable archive mode:
+
+``su postgres``
+
+``psql``
+
+```
+postgres=# ALTER SYSTEM SET archive_command TO 'cp %p /scratch/postgres/backup/archive/archive%f';
+ALTER SYSTEM
+```
+
+Reload postgres demon:
+
+``sudo systemctl restart postgresql``
+
+Check:
+
+``sudo systemctl status postgresql``
+
+Check mode as user postgres in psql:
+
+```
+postgres=# show archive_mode;
+ archive_mode 
+--------------
+ on
+(1 row)
+```
+
 ### Local
 + [To the top](https://github.com/codesshaman/pgbackrest_install/#Top "Top")</br>
 ### Step 1. Create stanza:
 
-``sudo -u postgres pgbackrest --stanza=main --log-level-console=info stanza-create``
+``su postgres``
+
+``pgbackrest --stanza=main --log-level-console=info stanza-create``
 
 Answer:
 
@@ -89,7 +146,7 @@ Answer:
 
 ### Step 2. Check stanza:
 
-``sudo -u postgres pgbackrest --stanza=main --log-level-console=info check``
+``pgbackrest --stanza=main --log-level-console=info check``
 
 Answer:
 

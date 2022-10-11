@@ -61,6 +61,10 @@ start-fast=y
 stop-auto=y
 ```
 
+Get access rights to the file:
+
+``chown postgres:postgres /etc/pgbackrest.conf``
+
 Reload postgres demon:
 
 ``sudo systemctl restart postgresql``
